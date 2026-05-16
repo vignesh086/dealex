@@ -1,0 +1,5 @@
+export default function Sidebar() {
+  return (
+    <div dangerouslySetInnerHTML={{ __html: `<div class="bnav" role="tablist"><button class="bn act" id="nav-home" role="tab" aria-selected="true" aria-label="Home" onclick="navTo('home')"><span class="bni" aria-hidden="true">🏠</span>Home</button><button class="bn" id="nav-fi" role="tab" aria-selected="false" aria-label="Financial Instruments" onclick="navTo('fi')"><span class="bni" aria-hidden="true">🏦</span>Instruments</button><button class="bn" id="nav-templates" role="tab" aria-selected="false" aria-label="Templates" onclick="navTo('templates')"><span class="bni" aria-hidden="true">📄</span>Templates</button><button class="bn" id="nav-desk" role="tab" aria-selected="false" aria-label="Deal Desk" onclick="navTo('desk')"><span class="bni" aria-hidden="true">💼</span>Desk</button><button class="bn" id="nav-experts" role="tab" aria-selected="false" aria-label="Experts" onclick="navTo('experts')"><span class="bni" aria-hidden="true">👨‍💼</span>Experts</button></div>` }} />
+  )
+}
