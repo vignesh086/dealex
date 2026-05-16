@@ -773,7 +773,7 @@ body {
   font-family:'Inter',sans-serif;
   font-size:13px;
   font-weight:400;
-  outline:none;
+  outline:none; /* overridden by :focus-visible below */
   appearance:none;
   border-radius:0;
   transition:border-color .18s,background .18s;
@@ -1370,6 +1370,228 @@ body {
   border:1px solid rgba(58,123,213,.3);
 }
 
+/* ═══════════════════════════════════════════════════════
+   ACCESSIBILITY — FOCUS VISIBLE
+   ═══════════════════════════════════════════════════════ */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   DESKTOP SHEET / DIALOG (≥768px)
+   ═══════════════════════════════════════════════════════ */
+@media(min-width:768px){
+  .so {
+    align-items:center;
+    justify-content:center;
+  }
+  .sh {
+    width:min(640px,94vw);
+    max-height:85vh;
+    border-bottom:1px solid var(--border-hi);
+    border-radius:2px;
+    transform:translateY(40px) scale(.97);
+    transition:transform .28s cubic-bezier(.32,.72,0,1),opacity .22s;
+  }
+  .so.open .sh {
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SIDEBAR NAV (≥900px)
+   ═══════════════════════════════════════════════════════ */
+@media(min-width:900px){
+  .bnav {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:auto;
+    width:180px;
+    flex-direction:column;
+    align-items:stretch;
+    border-top:none;
+    border-right:1px solid var(--border);
+    padding:80px 0 24px;
+    gap:0;
+    justify-content:flex-start;
+  }
+  .bn {
+    flex:none;
+    flex-direction:row;
+    justify-content:flex-start;
+    gap:10px;
+    padding:12px 20px;
+    font-size:9px;
+    text-align:left;
+    border-left:2px solid transparent;
+  }
+  .bn.act {
+    border-left-color:var(--gold);
+    background:var(--gold-a08);
+  }
+  .bni {
+    font-size:16px;
+    flex-shrink:0;
+  }
+  /* Main app content area offset for sidebar */
+  #app > .topbar,
+  #app > .ticker,
+  #app > .tab-page {
+    margin-left:180px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE CONTENT BREAKPOINTS
+   ═══════════════════════════════════════════════════════ */
+@media(min-width:768px){
+  .section {
+    padding-left:24px;
+    padding-right:24px;
+  }
+  .ig {
+    padding:0 24px;
+  }
+  .h2 {
+    font-size:28px;
+  }
+  .ey {
+    font-size:9px;
+  }
+}
+@media(min-width:1024px){
+  .section {
+    padding-left:40px;
+    padding-right:40px;
+  }
+  .ig {
+    padding:0 40px;
+    grid-template-columns:repeat(4,1fr);
+  }
+  .h2 {
+    font-size:36px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   IN-APP DOCUMENT VIEWER
+   ═══════════════════════════════════════════════════════ */
+#doc-viewer {
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  background:var(--obs);
+  transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.32,.72,0,1);
+  visibility:hidden;
+}
+#doc-viewer.open {
+  transform:translateX(0);
+  visibility:visible;
+}
+@media(min-width:768px){
+  #doc-viewer {
+    left:auto;
+    right:0;
+    width:min(760px,100vw);
+    box-shadow:-4px 0 24px rgba(0,0,0,.5);
+    border-left:1px solid var(--border);
+  }
+}
+#doc-viewer-bar {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+#doc-viewer-title {
+  flex:1;
+  font-size:11px;
+  font-weight:700;
+  color:var(--white);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+#doc-viewer-body {
+  flex:1;
+  overflow-y:auto;
+  background:#fff;
+  color:#111;
+  font-family:Georgia,serif;
+  font-size:11px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   EMPTY STATE
+   ═══════════════════════════════════════════════════════ */
+.empty-state {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:60px 20px;
+  text-align:center;
+  color:var(--muted);
+}
+.empty-state .es-icon {
+  font-size:48px;
+  margin-bottom:12px;
+  opacity:.5;
+}
+.empty-state .es-text {
+  font-size:11px;
+  font-weight:600;
+  color:var(--muted2);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after {
+    animation:none!important;
+    transition:none!important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SWIFT COPY BUTTON
+   ═══════════════════════════════════════════════════════ */
+.swift-copy-btn {
+  padding:5px 12px;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-family:'Inter',sans-serif;
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--muted2);
+  cursor:pointer;
+  transition:all .15s;
+}
+.swift-copy-btn:hover {
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
 </style>
 
 </head>
@@ -1924,7 +2146,7 @@ body.zh .role-name,.zh .edu-panel,.zh .doc-req-label,.zh .doc-req-desc,.zh .lang
 </div><!-- end #landing -->
 
 <!-- AUTH -->
-<div class="so" id="authSheet" onclick="if(event.target===this)closeAuth()"><div class="sh"><div class="shh"></div>
+<div class="so" id="authSheet" role="dialog" aria-modal="true" aria-labelledby="authSheetTitle" onclick="if(event.target===this)closeAuth()"><div class="sh"><div class="shh" id="authSheetTitle"></div>
 <div class="atr"><button class="at active" id="atLogin" onclick="swAt('login')">Login</button><button class="at" id="atCreate" onclick="swAt('create')">Create Account</button></div>
 <div class="ap active" id="apLogin"><div style="margin-bottom:14px"><div style="font-family:'Inter', sans-serif;font-size:22px;font-weight:300;color:var(--white);margin-bottom:3px">Welcome back.</div><div style="font-size:9px;color:var(--muted2)">Log in to access your deals and documents.</div></div>
 <div class="fg"><label class="fl">Email or Username</label><input class="fi" type="text" placeholder="your@email.com" id="loginEmail" onkeydown="if(event.key==='Enter')doLogin()"></div>
@@ -2676,7 +2898,7 @@ body.zh .role-name,.zh .edu-panel,.zh .doc-req-label,.zh .doc-req-desc,.zh .lang
 <div class="st">6. Bank Package Readiness</div>
 <div style="font-size:9px;color:var(--muted2);margin-bottom:10px;line-height:1.6">Every item below must be ✓ before you walk into your bank. This is the reality check.</div>
 <div id="bankPkgChecklist"></div>
-<div style="display:flex;align-items:center;gap:8px;margin:12px 0"><span id="bankPkgPct" style="font-family:'Inter',sans-serif;font-size:24px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="bankPkgBar" style="width:0%"></div></div></div>
+<div style="display:flex;align-items:center;gap:8px;margin:12px 0"><span id="bankPkgPct" style="font-family:'Inter',sans-serif;font-size:24px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="bankPkgBar" style="width:0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div></div>
 
 <!-- Where Deals Fail Warning -->
 <div class="warning-box" style="margin-top:8px"><div class="wi">💀</div><div class="wt"><strong>Where deals fail:</strong> Sender cannot prove funds. Draft wording is amateur or broker-written. No real relationship with issuing bank. Receiver bank not responsive or not SWIFT-capable. Compliance flags structure as circular or monetization risk. <strong style="color:var(--red)">If any of the above apply — stop. Fix it before proceeding.</strong></div></div>
@@ -2762,11 +2984,11 @@ body.zh .role-name,.zh .edu-panel,.zh .doc-req-label,.zh .doc-req-desc,.zh .lang
 <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Paymaster selection</div>
 <div style="display:flex;flex-direction:column;gap:6px" id="paymasterOptions">
 <div class="wiz-check" onclick="selectPaymaster('dealex',this)" id="pmDealex">
-<div class="wc-box">✓</div>
+<div class="wc-box" role="checkbox" aria-checked="false">✓</div>
 <div><strong style="color:var(--white);font-size:11px">DEALEX as Paymaster</strong><br><span style="font-size:9px;color:var(--muted2)">Banking details stay on-platform. Commissions disbursed by DEALEX. Nobody sees anyone else's bank info.</span></div>
 </div>
 <div class="wiz-check" onclick="selectPaymaster('external',this)" id="pmExternal">
-<div class="wc-box">✓</div>
+<div class="wc-box" role="checkbox" aria-checked="false">✓</div>
 <div><strong style="color:var(--white);font-size:11px">External paymaster</strong><br><span style="font-size:9px;color:var(--muted2)">Use your own paymaster or escrow agent. Banking details shared as per IMFPA terms.</span></div>
 </div>
 </div>
@@ -2961,11 +3183,11 @@ OFAC/sanctions hit = no deal
 <div class="fg"><label class="fl">Transaction Code<span class="rq">*</span></label><input class="fi" id="df-txCode" placeholder="DEALEX/MT760/2025-001" oninput="fc('txCode',this.value)"></div>
 <div class="fg"><label class="fl">Jurisdiction (:44J:)</label><input class="fi" id="df-jurisdiction" placeholder="e.g. GB" oninput="fc('jurisdiction',this.value)"></div>
 </div><div class="br"><button class="bg" onclick="goS(2)">Issuing Bank →</button></div></div>
-<div class="ss" id="s2"><div class="section" style="padding-bottom:0"><div class="ey">Step 2 — Issuing Bank</div><div class="h2">SENDER <em>BANK.</em></div><div style="display:flex;align-items:center;gap:8px;margin:10px 0"><span id="pd2" style="font-family:'Inter',sans-serif;font-size:22px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="pb2" style="width:0%"></div></div></div></div><div style="padding:0 16px" id="fISS"></div><div class="br"><button class="bg" style="flex:2" onclick="goS(3)">Receiving Bank →</button><button class="bgh" style="flex:1" onclick="goS(1)">← Back</button></div></div>
-<div class="ss" id="s3"><div class="section" style="padding-bottom:0"><div class="ey">Step 3 — Advising Bank</div><div class="h2">BENEFICIARY <em>BANK.</em></div><div style="display:flex;align-items:center;gap:8px;margin:10px 0"><span id="pd3" style="font-family:'Inter',sans-serif;font-size:22px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="pb3" style="width:0%"></div></div></div></div><div style="padding:0 16px" id="fRCV"></div><div class="br"><button class="bg" style="flex:2" onclick="goS(4)">SWIFT Preview →</button><button class="bgh" style="flex:1" onclick="goS(2)">← Back</button></div></div>
+<div class="ss" id="s2"><div class="section" style="padding-bottom:0"><div class="ey">Step 2 — Issuing Bank</div><div class="h2">SENDER <em>BANK.</em></div><div style="display:flex;align-items:center;gap:8px;margin:10px 0"><span id="pd2" style="font-family:'Inter',sans-serif;font-size:22px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="pb2" style="width:0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div></div></div><div style="padding:0 16px" id="fISS"></div><div class="br"><button class="bg" style="flex:2" onclick="goS(3)">Receiving Bank →</button><button class="bgh" style="flex:1" onclick="goS(1)">← Back</button></div></div>
+<div class="ss" id="s3"><div class="section" style="padding-bottom:0"><div class="ey">Step 3 — Advising Bank</div><div class="h2">BENEFICIARY <em>BANK.</em></div><div style="display:flex;align-items:center;gap:8px;margin:10px 0"><span id="pd3" style="font-family:'Inter',sans-serif;font-size:22px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="pb3" style="width:0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div></div></div><div style="padding:0 16px" id="fRCV"></div><div class="br"><button class="bg" style="flex:2" onclick="goS(4)">SWIFT Preview →</button><button class="bgh" style="flex:1" onclick="goS(2)">← Back</button></div></div>
 <div class="ss" id="s4"><div class="section" style="padding-bottom:0"><div class="ey">Step 4 — SWIFT & Checklist</div><div class="h2">MT760 <em>PREVIEW.</em></div></div>
 <div class="ts2"><button class="tb act" id="tabSw" onclick="swTab('sw')">SWIFT MT760</button><button class="tb" id="tabCl" onclick="swTab('cl')">Checklist</button></div>
-<div id="pSw" style="padding:12px 16px"><div class="card"><div class="ch"><span class="chl">MT760 Draft</span><span class="pill pbl">Draft</span></div><div class="cb" style="padding:0"><div class="swift-block" id="swiftMsg"></div></div></div><div class="warning-box"><div class="wi">⚠️</div><div class="wt"><strong>Draft only.</strong> Actual MT760 transmitted bank-to-bank via SWIFT.</div></div></div>
+<div id="pSw" style="padding:12px 16px"><div class="card"><div class="ch"><span class="chl">MT760 Draft</span><span class="pill pbl">Draft</span><button class="swift-copy-btn" onclick="copySwiftMsg()" style="margin-left:auto" title="Copy MT760 message">📋 Copy</button></div><div class="cb" style="padding:0"><div class="swift-block" id="swiftMsg"></div></div></div><div class="warning-box"><div class="wi">⚠️</div><div class="wt"><strong>Draft only.</strong> Actual MT760 transmitted bank-to-bank via SWIFT.</div></div></div>
 <div id="pCl" style="display:none;padding:12px 16px"></div>
 <div class="br"><button class="bg" style="flex:2" onclick="goS(5)">Generate Report →</button><button class="bgh" style="flex:1" onclick="goS(3)">← Back</button></div></div>
 <div class="ss" id="s5"><div class="section" style="padding-bottom:0"><div class="ey">Step 5 — Review</div><div class="h2">YOUR <em>MT760.</em></div></div>
@@ -2976,10 +3198,14 @@ OFAC/sanctions hit = no deal
 </div>
 <!-- TEMPLATES -->
 <div class="tab-page" id="pg-templates"><div class="section"><div class="ey">Templates</div><div class="h2">DOCUMENT <em>TEMPLATES.</em></div><div class="bt">Legal templates for every deal type.</div></div>
-<div class="ig"><div class="ic" onclick="showT('Open DOA workflow')"><div class="ii">📜</div><div class="it">DOA</div><div class="is">Deed of Assignment</div></div><div class="ic" onclick="openIMFPA()"><div class="ii">📋</div><div class="it">IMFPA</div><div class="is">Irrevocable Master Fee Protection</div></div><div class="ic" onclick="generateNCNDA()"><div class="ii">🛡️</div><div class="it">NCNDA</div><div class="is">Non-Circumvention Non-Disclosure</div></div><div class="ic lk"><div class="ii">📨</div><div class="it">ICPO</div><div class="is">Coming Soon</div></div><div class="ic lk"><div class="ii">🏛️</div><div class="it">BCL</div><div class="is">Coming Soon</div></div><div class="ic lk"><div class="ii">📝</div><div class="it">SPA</div><div class="is">Coming Soon</div></div></div></div>
+<div class="ig"><div class="ic" onclick="showT('Open DOA workflow')"><div class="ii">📜</div><div class="it">DOA</div><div class="is">Deed of Assignment</div></div><div class="ic" onclick="openIMFPA()"><div class="ii">📋</div><div class="it">IMFPA</div><div class="is">Irrevocable Master Fee Protection</div></div><div class="ic" onclick="generateNCNDA()"><div class="ii">🛡️</div><div class="it">NCNDA</div><div class="is">Non-Circumvention Non-Disclosure</div></div><div class="ic lk"><div class="ii">📨</div><div class="it">ICPO</div><div class="is">Coming Soon</div></div><div class="ic lk"><div class="ii">🏛️</div><div class="it">BCL</div><div class="is">Coming Soon</div></div><div class="ic lk"><div class="ii">📝</div><div class="it">SPA</div><div class="is">Coming Soon</div></div></div>
+<div class="empty-state" id="templates-empty-state" style="display:none"><div class="es-icon">📄</div><div class="es-text">No items yet</div></div>
+</div>
 <!-- EXPERTS -->
 <div class="tab-page" id="pg-experts"><div class="section"><div class="ey">Experts</div><div class="h2">CONNECT WITH <em>EXPERTS.</em></div><div class="bt">Book consultations with verified DEALEX professionals.</div></div>
-<div style="padding:0 16px"><div class="card"><div class="cb" style="text-align:center;padding:30px"><div style="font-size:36px;margin-bottom:10px">👨‍💼</div><div style="font-size:11px;color:var(--white);font-weight:600">Expert Network</div><div style="font-size:9px;color:var(--muted2);margin-top:4px">DEALEX Desk · Lv.25 Banker · Law · Gold</div></div></div></div></div>
+<div style="padding:0 16px"><div class="card"><div class="cb" style="text-align:center;padding:30px"><div style="font-size:36px;margin-bottom:10px">👨‍💼</div><div style="font-size:11px;color:var(--white);font-weight:600">Expert Network</div><div style="font-size:9px;color:var(--muted2);margin-top:4px">DEALEX Desk · Lv.25 Banker · Law · Gold</div></div></div></div>
+<div class="empty-state"><div class="es-icon">👨‍💼</div><div class="es-text">No experts listed yet</div></div>
+</div>
 <!-- MATCH -->
 <div class="tab-page" id="pg-desk"><div class="section"><div class="ey">Deal Desk</div><div class="h2">DEALEX <em>DESK.</em></div><div class="bt">You have part of a deal. We help you complete it. Select your position below.</div></div>
 
@@ -3034,30 +3260,30 @@ OFAC/sanctions hit = no deal
 
 <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#E06050;font-weight:600;margin-bottom:8px">Must have — deal cannot proceed without these</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px" id="projMustHave">
-<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="legal_entity"><div class="wc-box">✓</div><span><strong>Legal entity exists</strong> — registered company, SPV, or statutory body that can receive funds</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="land_or_rights"><div class="wc-box">✓</div><span><strong>Land, concession, or contract secured</strong> — something tangible that proves this project is real</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="feasibility"><div class="wc-box">✓</div><span><strong>Feasibility study or business plan</strong> — a document that shows this project can work financially</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="kyc_ready"><div class="wc-box">✓</div><span><strong>KYC-ready principals</strong> — passport, company registration, proof of address for key people</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="revenue_path"><div class="wc-box">✓</div><span><strong>Clear revenue path or exit</strong> — how does the SBLC get repaid within 366 days? Refinance plan, offtake, concession income, or asset sale</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="legal_entity"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Legal entity exists</strong> — registered company, SPV, or statutory body that can receive funds</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="land_or_rights"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Land, concession, or contract secured</strong> — something tangible that proves this project is real</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="feasibility"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Feasibility study or business plan</strong> — a document that shows this project can work financially</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="kyc_ready"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>KYC-ready principals</strong> — passport, company registration, proof of address for key people</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'must')" data-id="revenue_path"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Clear revenue path or exit</strong> — how does the SBLC get repaid within 366 days? Refinance plan, offtake, concession income, or asset sale</span></div>
 </div>
 
 <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Should have — strengthens your position significantly</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px" id="projShouldHave">
-<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="gov_support"><div class="wc-box">✓</div><span><strong>Government support letter or approval</strong> — sovereign backing makes everything easier</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="bank_relationship"><div class="wc-box">✓</div><span><strong>Existing bank relationship</strong> — a bank that knows you and can receive instruments</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="cost_breakdown"><div class="wc-box">✓</div><span><strong>Detailed cost breakdown</strong> — not just a total number, but where every dollar goes</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="contractor"><div class="wc-box">✓</div><span><strong>Contractor or EPC firm identified</strong> — someone who will actually build this</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="timeline"><div class="wc-box">✓</div><span><strong>Project timeline with milestones</strong> — when does each phase start and finish</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="env_assessment"><div class="wc-box">✓</div><span><strong>Environmental or social impact assessment</strong> — required for most infrastructure</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="gov_support"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Government support letter or approval</strong> — sovereign backing makes everything easier</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="bank_relationship"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Existing bank relationship</strong> — a bank that knows you and can receive instruments</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="cost_breakdown"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Detailed cost breakdown</strong> — not just a total number, but where every dollar goes</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="contractor"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Contractor or EPC firm identified</strong> — someone who will actually build this</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="timeline"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Project timeline with milestones</strong> — when does each phase start and finish</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'should')" data-id="env_assessment"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Environmental or social impact assessment</strong> — required for most infrastructure</span></div>
 </div>
 
 <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px">Nice to have — makes the deal close faster</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px" id="projNiceHave">
-<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="insurance"><div class="wc-box">✓</div><span>Insurance or performance guarantee arranged</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="co_investors"><div class="wc-box">✓</div><span>Co-investors or co-funders partially committed</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="legal_opinion"><div class="wc-box">✓</div><span>Legal opinion on the project structure</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="valuation"><div class="wc-box">✓</div><span>Independent valuation or appraisal</span></div>
-<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="pmo"><div class="wc-box">✓</div><span>Project management team assembled</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="insurance"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Insurance or performance guarantee arranged</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="co_investors"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Co-investors or co-funders partially committed</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="legal_opinion"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Legal opinion on the project structure</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="valuation"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Independent valuation or appraisal</span></div>
+<div class="wiz-check" onclick="toggleProjCheck(this,'nice')" data-id="pmo"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Project management team assembled</span></div>
 </div>
 
 <!-- Investability Score -->
@@ -3084,27 +3310,27 @@ OFAC/sanctions hit = no deal
 
 <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Tax & profit incentives</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="opp_zone"><div class="wc-box">✓</div><span><strong>Opportunity Zone / Tax-Exempt Zone</strong> — profits from the project are tax-exempt for a designated period</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="tax_holiday"><div class="wc-box">✓</div><span><strong>Tax holiday</strong> — corporate tax exemption for 5, 10, or 15+ years</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="capital_gains"><div class="wc-box">✓</div><span><strong>Capital gains exemption</strong> — no tax on asset appreciation or sale proceeds</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="repatriation"><div class="wc-box">✓</div><span><strong>Profit repatriation allowed</strong> — foreign investors can take profits home without restriction</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="opp_zone"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Opportunity Zone / Tax-Exempt Zone</strong> — profits from the project are tax-exempt for a designated period</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="tax_holiday"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Tax holiday</strong> — corporate tax exemption for 5, 10, or 15+ years</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="capital_gains"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Capital gains exemption</strong> — no tax on asset appreciation or sale proceeds</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="repatriation"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Profit repatriation allowed</strong> — foreign investors can take profits home without restriction</span></div>
 </div>
 
 <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Trade & operational incentives</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="ftz"><div class="wc-box">✓</div><span><strong>Free Trade Zone (FTZ) / Special Economic Zone (SEZ)</strong> — reduced customs, import/export benefits</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="duty_free"><div class="wc-box">✓</div><span><strong>Duty-free import on equipment & materials</strong> — no import tax on project-related goods</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="foreign_ownership"><div class="wc-box">✓</div><span><strong>100% foreign ownership permitted</strong> — no local partner requirement</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="expedited"><div class="wc-box">✓</div><span><strong>Expedited permits & approvals</strong> — fast-track regulatory processing</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="ftz"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Free Trade Zone (FTZ) / Special Economic Zone (SEZ)</strong> — reduced customs, import/export benefits</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="duty_free"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Duty-free import on equipment & materials</strong> — no import tax on project-related goods</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="foreign_ownership"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>100% foreign ownership permitted</strong> — no local partner requirement</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="expedited"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Expedited permits & approvals</strong> — fast-track regulatory processing</span></div>
 </div>
 
 <div style="font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Government & financial support</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="gov_grant"><div class="wc-box">✓</div><span><strong>Government grant or subsidy</strong> — direct financial contribution from the government</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="sovereign_guarantee"><div class="wc-box">✓</div><span><strong>Sovereign guarantee</strong> — government guarantees the project's debt obligations</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="concessional_loan"><div class="wc-box">✓</div><span><strong>Concessional loan available</strong> — below-market interest rates from development banks</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="land_grant"><div class="wc-box">✓</div><span><strong>Free or discounted land</strong> — government-provided land at below market value</span></div>
-<div class="wiz-check" onclick="toggleIncentive(this)" data-id="infrastructure"><div class="wc-box">✓</div><span><strong>Government-funded supporting infrastructure</strong> — roads, utilities, connections built by government</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="gov_grant"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Government grant or subsidy</strong> — direct financial contribution from the government</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="sovereign_guarantee"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Sovereign guarantee</strong> — government guarantees the project's debt obligations</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="concessional_loan"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Concessional loan available</strong> — below-market interest rates from development banks</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="land_grant"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Free or discounted land</strong> — government-provided land at below market value</span></div>
+<div class="wiz-check" onclick="toggleIncentive(this)" data-id="infrastructure"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Government-funded supporting infrastructure</strong> — roads, utilities, connections built by government</span></div>
 </div>
 
 <!-- Incentive details -->
@@ -3142,12 +3368,12 @@ OFAC/sanctions hit = no deal
 <div class="card" style="margin-bottom:14px"><div class="ch"><span class="chl">What do you need?</span></div><div class="cb">
 <div style="font-size:9px;color:var(--muted2);margin-bottom:10px">We'll match you with the right funding structure. Check all that apply.</div>
 <div style="display:flex;flex-direction:column;gap:6px" id="deskProjNeeds">
-<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box">✓</div><span>Soft costs — design, permits, surveys, legal, project setup</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box">✓</div><span>Phase 1 construction or development capital</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box">✓</div><span>Bank guarantee or SBLC to secure the contract</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box">✓</div><span>Performance bond or advance payment guarantee</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box">✓</div><span>Bridge financing while waiting for other funds</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box">✓</div><span>I'm not sure — I just need funding to get started</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Soft costs — design, permits, surveys, legal, project setup</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Phase 1 construction or development capital</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Bank guarantee or SBLC to secure the contract</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Performance bond or advance payment guarantee</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Bridge financing while waiting for other funds</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>I'm not sure — I just need funding to get started</span></div>
 </div>
 </div></div>
 
@@ -3234,7 +3460,7 @@ OFAC/sanctions hit = no deal
 
 <!-- Progress -->
 <div style="margin:14px 0">
-<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span id="deskProgressPct" style="font-family:'Inter',sans-serif;font-size:24px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="deskProgressBar" style="width:0%;background:var(--gold)"></div></div></div>
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span id="deskProgressPct" style="font-family:'Inter',sans-serif;font-size:24px;color:var(--muted2)">0%</span><div class="pb" style="flex:1"><div class="pf" id="deskProgressBar" style="width:0%;background:var(--gold)" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div></div>
 <div style="font-size:8px;color:var(--muted);text-align:center">Complete all required fields. Once verified, you'll enter the DEALEX matching pool.</div>
 </div>
 
@@ -3666,15 +3892,15 @@ I agree to DEALEX platform terms and understand my deal data is stored securely.
 <div style="font-size:9.5px;color:var(--txt);line-height:1.7;margin-bottom:12px">Select your preferred payment method. Listed from <strong style="color:var(--green)">most desirable</strong> to least. The buyer will see your preference.</div>
 
 <div style="display:flex;flex-direction:column;gap:6px">
-<div class="wiz-check on" onclick="this.classList.toggle('on')" data-pay="tt"><div class="wc-box">✓</div><div><strong style="color:var(--green)">TT Wire Transfer (MT103)</strong><br><span style="font-size:9px;color:var(--muted2)">Fastest, simplest. Direct bank-to-bank wire. Requires trust or advance payment guarantee. Most desirable for seller.</span></div></div>
+<div class="wiz-check on" onclick="this.classList.toggle('on')" data-pay="tt"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--green)">TT Wire Transfer (MT103)</strong><br><span style="font-size:9px;color:var(--muted2)">Fastest, simplest. Direct bank-to-bank wire. Requires trust or advance payment guarantee. Most desirable for seller.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_sight"><div class="wc-box">✓</div><div><strong style="color:var(--white)">Irrevocable DLC at Sight (MT700)</strong><br><span style="font-size:9px;color:var(--muted2)">Bank-guaranteed. Paid immediately on compliant document presentation. Gold standard for commodity trade.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_sight"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">Irrevocable DLC at Sight (MT700)</strong><br><span style="font-size:9px;color:var(--muted2)">Bank-guaranteed. Paid immediately on compliant document presentation. Gold standard for commodity trade.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_deferred"><div class="wc-box">✓</div><div><strong style="color:var(--white)">DLC with deferred payment (30/60/90 days)</strong><br><span style="font-size:9px;color:var(--muted2)">Bank-guaranteed but payment delayed. Buyer gets time to receive and verify goods before paying.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_deferred"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">DLC with deferred payment (30/60/90 days)</strong><br><span style="font-size:9px;color:var(--muted2)">Bank-guaranteed but payment delayed. Buyer gets time to receive and verify goods before paying.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="sblc_wire"><div class="wc-box">✓</div><div><strong style="color:var(--white)">SBLC-backed wire transfer</strong><br><span style="font-size:9px;color:var(--muted2)">SBLC issued as guarantee, payment by wire. If buyer defaults, seller draws on SBLC.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="sblc_wire"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">SBLC-backed wire transfer</strong><br><span style="font-size:9px;color:var(--muted2)">SBLC issued as guarantee, payment by wire. If buyer defaults, seller draws on SBLC.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="collection"><div class="wc-box">✓</div><div><strong style="color:var(--white)">Documentary Collection (D/P or D/A)</strong><br><span style="font-size:9px;color:var(--muted2)">Documents through banks, but no bank payment guarantee. Lower cost, higher risk.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="collection"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">Documentary Collection (D/P or D/A)</strong><br><span style="font-size:9px;color:var(--muted2)">Documents through banks, but no bank payment guarantee. Lower cost, higher risk.</span></div></div>
 </div>
 </div></div>
 
@@ -3684,29 +3910,29 @@ I agree to DEALEX platform terms and understand my deal data is stored securely.
 
 <div style="font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#E06050;font-weight:600;margin-bottom:6px">Must have — deal cannot proceed</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span><strong>Commodity inspection certificate</strong> (CCIC, SGS, or equivalent)</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span><strong>Lab analysis / assay report</strong> with grade confirmation</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span><strong>Mining licence or export permit</strong></span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span><strong>Seller company registration</strong> and certificate of incorporation</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span><strong>Seller KYC / CIS</strong> — passport, proof of address, UBO declaration</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span><strong>Seller bank details</strong> — receiving bank, SWIFT, account number</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Commodity inspection certificate</strong> (CCIC, SGS, or equivalent)</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Lab analysis / assay report</strong> with grade confirmation</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Mining licence or export permit</strong></span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Seller company registration</strong> and certificate of incorporation</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Seller KYC / CIS</strong> — passport, proof of address, UBO declaration</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Seller bank details</strong> — receiving bank, SWIFT, account number</span></div>
 </div>
 
 <div style="font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px">Should have — strengthens position</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Stockpile photos or video</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Certificate of Origin (COO)</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Second independent lab report (cross-verification)</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Shipping schedule or vessel nomination</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Previous trade references or completed shipments</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Stockpile photos or video</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Certificate of Origin (COO)</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Second independent lab report (cross-verification)</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Shipping schedule or vessel nomination</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Previous trade references or completed shipments</span></div>
 </div>
 
 <div style="font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px">Ready at shipping</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Bill of Lading (B/L)</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Commercial invoice</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Packing list / weight certificate</span></div>
-<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box">✓</div><span>Insurance certificate (if CIF)</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Bill of Lading (B/L)</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Commercial invoice</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Packing list / weight certificate</span></div>
+<div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Insurance certificate (if CIF)</span></div>
 </div>
 </div></div>
 
@@ -3728,9 +3954,20 @@ I agree to DEALEX platform terms and understand my deal data is stored securely.
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="bnav"><button class="bn act" id="nav-home" onclick="navTo('home')"><span class="bni">🏠</span>Home</button><button class="bn" id="nav-fi" onclick="navTo('fi')"><span class="bni">🏦</span>Instruments</button><button class="bn" id="nav-templates" onclick="navTo('templates')"><span class="bni">📄</span>Templates</button><button class="bn" id="nav-desk" onclick="navTo('desk')"><span class="bni">💼</span>Desk</button><button class="bn" id="nav-experts" onclick="navTo('experts')"><span class="bni">👨‍💼</span>Experts</button></div>
+<div class="bnav" role="tablist"><button class="bn act" id="nav-home" role="tab" aria-selected="true" aria-label="Home" onclick="navTo('home')"><span class="bni" aria-hidden="true">🏠</span>Home</button><button class="bn" id="nav-fi" role="tab" aria-selected="false" aria-label="Financial Instruments" onclick="navTo('fi')"><span class="bni" aria-hidden="true">🏦</span>Instruments</button><button class="bn" id="nav-templates" role="tab" aria-selected="false" aria-label="Templates" onclick="navTo('templates')"><span class="bni" aria-hidden="true">📄</span>Templates</button><button class="bn" id="nav-desk" role="tab" aria-selected="false" aria-label="Deal Desk" onclick="navTo('desk')"><span class="bni" aria-hidden="true">💼</span>Desk</button><button class="bn" id="nav-experts" role="tab" aria-selected="false" aria-label="Experts" onclick="navTo('experts')"><span class="bni" aria-hidden="true">👨‍💼</span>Experts</button></div>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+<!-- IN-APP DOCUMENT VIEWER -->
+<div id="doc-viewer" role="dialog" aria-modal="true" aria-labelledby="doc-viewer-title">
+  <div id="doc-viewer-bar">
+    <div id="doc-viewer-title">Document</div>
+    <button class="swift-copy-btn" onclick="printDocViewer()" title="Print document">🖨️ Print</button>
+    <button class="swift-copy-btn" onclick="copyDocViewer()" title="Copy all text">📋 Copy All</button>
+    <button class="swift-copy-btn" onclick="closeDocViewer()" title="Close viewer" aria-label="Close document viewer">✕</button>
+  </div>
+  <div id="doc-viewer-body"></div>
+</div>
 <script>
 
 /* ═══════════════════════════════════════════════════════
@@ -3922,7 +4159,7 @@ function doSocial(){closeAuth();enterApp()}
    ═══════════════════════════════════════════════════════ */
 function enterApp(){document.getElementById('landing').classList.add('hidden');document.getElementById('app').style.display='block';navTo('home')}
 var tabLabels={home:'HOME',fi:'FINANCIAL INSTRUMENTS',mt760:'MT760 WORKFLOW',templates:'TEMPLATES',experts:'EXPERTS',desk:'DEALEX DESK',wizard:'DEALEX WIZARD',commodity:'COMMODITY DESK'};
-function navTo(tab){curTab=tab;document.querySelectorAll('.tab-page').forEach(function(p){p.classList.remove('act')});var pg=document.getElementById('pg-'+tab);if(pg)pg.classList.add('act');document.querySelectorAll('.bn').forEach(function(b){b.classList.remove('act')});var nm={home:'home',fi:'fi',mt760:'fi',templates:'templates',experts:'experts',desk:'desk',wizard:'home',commodity:'home'};var nb=document.getElementById('nav-'+(nm[tab]||tab));if(nb)nb.classList.add('act');document.getElementById('topLabel').textContent=tabLabels[tab]||'';document.getElementById('bkb').style.display=tab!=='home'?'flex':'none';window.scrollTo({top:0,behavior:'instant'})}
+function navTo(tab){curTab=tab;document.querySelectorAll('.tab-page').forEach(function(p){p.classList.remove('act')});var pg=document.getElementById('pg-'+tab);if(pg)pg.classList.add('act');document.querySelectorAll('.bn').forEach(function(b){b.classList.remove('act');b.setAttribute('aria-selected','false')});var nm={home:'home',fi:'fi',mt760:'fi',templates:'templates',experts:'experts',desk:'desk',wizard:'home',commodity:'home'};var nb=document.getElementById('nav-'+(nm[tab]||tab));if(nb){nb.classList.add('act');nb.setAttribute('aria-selected','true')}document.getElementById('topLabel').textContent=tabLabels[tab]||'';document.getElementById('bkb').style.display=tab!=='home'?'flex':'none';window.scrollTo({top:0,behavior:'instant'})}
 function goBackNav(){var routes={mt760:'fi',fi:'home',desk:'home',templates:'home',experts:'home',wizard:'home',commodity:'home'};navTo(routes[curTab]||'home')}
 function openMT760(){if(!dealRef)genDealRef();navTo('mt760');cs=1;rDots();bFlds();uProg();
   for(var i=1;i<=5;i++){var e=document.getElementById('s'+i);if(e)e.classList.toggle('act',i===1)}
@@ -3944,7 +4181,7 @@ function bSec(cid,secs){var c=document.getElementById(cid),h='';secs.forEach(fun
 function bI(f){var v=D[f.i]||'';return'<div class="fg"><label class="fl">'+f.l+(f.r?'<span class="rq">*</span>':'')+'</label><input class="fi" id="df-'+f.i+'" value="'+esc(v)+'" oninput="fc(\''+f.i+'\',this.value)"></div>'}
 function esc(s){var d=document.createElement('div');d.appendChild(document.createTextNode(s||''));return d.innerHTML}
 function fc(id,v){D[id]=v;uProg()}
-function uProg(){var n=0;RQ.forEach(function(id){if(D[id]&&String(D[id]).trim().length>1)n++});var p=Math.round((n/RQ.length)*100),c=p>=90?'var(--green)':'var(--gold)';['pb2','pb3'].forEach(function(b){var e=document.getElementById(b);if(e){e.style.width=p+'%';e.style.background=c}});['pd2','pd3'].forEach(function(b){var e=document.getElementById(b);if(e){e.textContent=p+'%';e.style.color=p>=50?'var(--gold)':'var(--muted2)'}})}
+function uProg(){var n=0;RQ.forEach(function(id){if(D[id]&&String(D[id]).trim().length>1)n++});var p=Math.round((n/RQ.length)*100),c=p>=90?'var(--green)':'var(--gold)';['pb2','pb3'].forEach(function(b){var e=document.getElementById(b);if(e){e.style.width=p+'%';e.style.background=c;e.setAttribute('aria-valuenow',p)}});['pd2','pd3'].forEach(function(b){var e=document.getElementById(b);if(e){e.textContent=p+'%';e.style.color=p>=50?'var(--gold)':'var(--muted2)'}})}
 
 /* ═══════════════════════════════════════════════════════
    SWIFT MESSAGE & CHECKLIST
@@ -4380,8 +4617,11 @@ function renderProjDocList(){
 var projChecks={must:{},should:{},nice:{}};
 function toggleProjCheck(el,tier){
   el.classList.toggle('on');
+  var isOn=el.classList.contains('on');
   var id=el.getAttribute('data-id');
-  projChecks[tier][id]=el.classList.contains('on');
+  projChecks[tier][id]=isOn;
+  var box=el.querySelector('.wc-box');
+  if(box)box.setAttribute('aria-checked',isOn?'true':'false');
   updateProjScore();
 }
 function updateProjScore(){
@@ -4793,7 +5033,7 @@ function wizInitChecklist(){
   wizCheckItems.forEach(function(item){
     var div=document.createElement('div');
     div.className='wiz-check'+(wizState.checks[item.id]?' on':'');
-    div.innerHTML='<div class="wc-box">✓</div><span>'+item.label+'</span>';
+    div.innerHTML='<div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>'+item.label+'</span>';
     div.onclick=function(){
       wizState.checks[item.id]=!wizState.checks[item.id];
       div.classList.toggle('on');
@@ -5595,14 +5835,15 @@ function handleDOA(file,zone){
     z.style.borderColor='var(--gold)';z.style.background='var(--gold-a15)';
     z.innerHTML='<div style="font-size:9px;color:var(--gold);font-weight:600;margin-bottom:8px">⚡ Extracting fields from '+name+'...</div><div class="pb"><div class="pf" id="pbar-'+id+'" style="width:0%;background:var(--gold)"></div></div><div id="pstatus-'+id+'" style="font-size:8px;color:var(--muted2);margin-top:6px">Loading parser...</div>';
   });
-  var prog=0,phase=0;
-  var phases=['Loading parser...','Reading document...','Extracting text...','Identifying parties...','Mapping fields...','Detecting instrument type...','Running audit...'];
+  var phases=['Reading document...','Extracting text...','Identifying parties...','Mapping fields...','Detecting instrument type...','Running audit...'];
+  var phaseIdx=0;
+  /* Cycle status messages honestly — no fake percentage */
   var tk=setInterval(function(){
-    prog=Math.min(prog+Math.random()*8,85);
-    if(prog>phase*12+10&&phase<phases.length-1)phase++;
-    ['pbar-doaZone1','pbar-doaZone2'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.width=prog+'%'});
-    ['pstatus-doaZone1','pstatus-doaZone2'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=phases[phase]});
-  },250);
+    if(phaseIdx<phases.length-1)phaseIdx++;
+    ['pstatus-doaZone1','pstatus-doaZone2'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=phases[phaseIdx]});
+    /* Indeterminate animation: pulse bar between 20% and 80% */
+    ['pbar-doaZone1','pbar-doaZone2'].forEach(function(id){var el=document.getElementById(id);if(el){var w=el._dir?parseFloat(el.style.width||0)-5:parseFloat(el.style.width||0)+5;if(w>=80)el._dir=true;if(w<=20)el._dir=false;el.style.width=w+'%'}});
+  },500);
 
   doaExtractText(file,function(text){
     clearInterval(tk);
@@ -6709,7 +6950,7 @@ function updateBankPkgChecklist(){
   var barEl=document.getElementById('bankPkgBar');
   var pillEl=document.getElementById('bankPkgPill');
   if(pctEl){pctEl.textContent=pct+'%';pctEl.style.color=pct>=90?'var(--green)':pct>=50?'var(--gold)':'var(--muted2)'}
-  if(barEl){barEl.style.width=pct+'%';barEl.style.background=pct>=90?'var(--green)':'var(--gold)'}
+  if(barEl){barEl.style.width=pct+'%';barEl.style.background=pct>=90?'var(--green)':'var(--gold)';barEl.setAttribute('aria-valuenow',pct)}
   if(pillEl){
     if(pct>=100){pillEl.textContent='Ready';pillEl.className='pill pg'}
     else if(pct>=70){pillEl.textContent=pct+'%';pillEl.className='pill po'}
@@ -7061,6 +7302,68 @@ function copyDealRef(){
 }
 
 updateSplit();
+
+/* ═══════════════════════════════════════════════════════
+   ARIA CHECKBOX — delegated event listener for wiz-check
+   ═══════════════════════════════════════════════════════ */
+document.addEventListener('click',function(e){
+  var el=e.target.closest('.wiz-check');
+  if(!el)return;
+  /* Wait a tick so classList.toggle has already run */
+  setTimeout(function(){
+    var box=el.querySelector('.wc-box');
+    if(box)box.setAttribute('aria-checked',el.classList.contains('on')?'true':'false');
+  },0);
+},true);
+
+/* ═══════════════════════════════════════════════════════
+   IN-APP DOCUMENT VIEWER
+   ═══════════════════════════════════════════════════════ */
+function openDocViewer(title,htmlContent){
+  var viewer=document.getElementById('doc-viewer');
+  var titleEl=document.getElementById('doc-viewer-title');
+  var body=document.getElementById('doc-viewer-body');
+  if(!viewer||!body)return;
+  titleEl.textContent=title||'Document';
+  body.innerHTML=htmlContent||'';
+  viewer.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDocViewer(){
+  var viewer=document.getElementById('doc-viewer');
+  if(viewer)viewer.classList.remove('open');
+  document.body.style.overflow='';
+}
+function printDocViewer(){
+  var body=document.getElementById('doc-viewer-body');
+  if(!body)return;
+  var win=window.open('','_blank','width=900,height=700');
+  win.document.write('<!DOCTYPE html><html><head><title>Print</title><style>body{font-family:Georgia,serif;font-size:11px;color:#111;padding:40px 50px}@media print{}</style></head><body>');
+  win.document.write(body.innerHTML);
+  win.document.write('</body></html>');
+  win.document.close();
+  setTimeout(function(){win.print()},400);
+}
+function copyDocViewer(){
+  var body=document.getElementById('doc-viewer-body');
+  if(!body)return;
+  var text=body.innerText||body.textContent||'';
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){showT('Document text copied')}).catch(function(){showT('Could not copy')});
+  }else{showT('Could not copy')}
+}
+
+/* ═══════════════════════════════════════════════════════
+   SWIFT MT760 COPY BUTTON
+   ═══════════════════════════════════════════════════════ */
+function copySwiftMsg(){
+  var el=document.getElementById('swiftMsg');
+  if(!el)return;
+  var text=el.innerText||el.textContent||'';
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){showT('MT760 message copied')}).catch(function(){showT('Could not copy')});
+  }else{showT('Could not copy')}
+}
 </script>
 <!-- ═══ DEALEX BACKEND CONFIG — set these before deploying ═══ -->
 <script>
