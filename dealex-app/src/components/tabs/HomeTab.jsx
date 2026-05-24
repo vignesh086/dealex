@@ -265,16 +265,13 @@ export default function HomeTab() {
 <div style="padding:0 16px;margin-bottom:20px"><div class="card"><div class="ch"><span class="chl">Live Deals</span><span class="pill po">3 Active</span></div><div class="cb"><div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border);padding:6px 0;font-size:10px"><span style="color:var(--white);font-weight:500">SBLC — EUR 100M</span><span class="pill pg">In Progress</span></div><div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border);padding:6px 0;font-size:10px"><span style="color:var(--white);font-weight:500">Bauxite 49,739 MT — Kuantan</span><span class="pill po">Pending KYC</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;font-size:10px"><span style="color:var(--white);font-weight:500">MT103 Wire — USD 5M</span><span class="pill pr">Review</span></div></div></div></div>
 
 <!-- DEALEX Wizard CTA -->
-<div style="padding:0 16px;margin-bottom:20px">
-<div onclick="navTo('wizard')" style="background:linear-gradient(135deg,rgba(42,128,80,.15) 0%,rgba(59,73,223,.1) 100%);border:1px solid rgba(42,128,80,.3);padding:18px;cursor:pointer;position:relative;overflow:hidden;transition:border-color .2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(42,128,80,.3)'">
-<div style="font-family:'Inter', sans-serif;font-size:clamp(16px,4vw,22px);font-weight:600;color:var(--white);line-height:1.2;margin-bottom:6px">Have a project but don't know <span style="color:var(--gold)">how to fund it?</span></div>
-<div style="font-size:9.5px;color:var(--txt);line-height:1.6;margin-bottom:10px">The DEALEX Wizard walks you through it. No jargon. Tell us about your project and we'll show you exactly what you need.</div>
-<div style="display:inline-block;padding:8px 20px;background:var(--gold);color:var(--obs);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;font-family:Montserrat,sans-serif">Start the Wizard →</div>
+<div style="padding:0 16px 0 16px">
+<div onclick="navTo('wizard')" style="background:linear-gradient(135deg,rgba(42,128,80,.18) 0%,rgba(59,73,223,.12) 100%);border:1px solid rgba(42,128,80,.4);padding:20px;cursor:pointer;position:relative;transition:border-color .2s;display:block" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(42,128,80,.4)'">
+<div style="font-family:'Inter', sans-serif;font-size:clamp(16px,4vw,22px);font-weight:600;color:var(--white);line-height:1.3;margin-bottom:8px">Have a project but don't know <span style="color:var(--gold)">how to fund it?</span></div>
+<div style="font-size:10px;color:var(--txt);line-height:1.7;margin-bottom:14px">The DEALEX Wizard walks you through it. No jargon. Tell us about your project and we'll show you exactly what you need.</div>
+<div style="display:block;padding:10px 22px;background:var(--gold);color:var(--obs);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;font-family:Montserrat,sans-serif;width:fit-content">Start the Wizard →</div>
 </div>
 </div>
-
-
-<!-- FINANCIAL INSTRUMENTS -->
 ` }} />
   )
 }
