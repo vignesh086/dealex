@@ -1842,14 +1842,15 @@ function generateCommodityDeck(){
 
 function toggleTheme(){
   var isLight=document.body.classList.toggle('light');
-  var btn=document.getElementById('themeBtn');
+  /* Landing page button still uses emoji — update that one only.
+     The app topbar button (#themeBtn) uses CSS-based SVG icon swap
+     (body.light shows sun, dark shows moon) — no JS manipulation needed. */
   var lbtn=document.getElementById('landingThemeBtn');
-  if(btn)btn.textContent=isLight?'☀️':'🌙';
   if(lbtn)lbtn.textContent=isLight?'☀️':'🌙';
   try{localStorage.setItem('dealex-theme',isLight?'light':'dark')}catch(e){}
 }
 /* Restore saved theme on load */
-(function(){try{if(localStorage.getItem('dealex-theme')==='light'){document.body.classList.add('light');setTimeout(function(){var btn=document.getElementById('themeBtn');if(btn)btn.textContent='☀️';var lbtn=document.getElementById('landingThemeBtn');if(lbtn)lbtn.textContent='☀️'},0)}}catch(e){}}());
+(function(){try{if(localStorage.getItem('dealex-theme')==='light'){document.body.classList.add('light');setTimeout(function(){var lbtn=document.getElementById('landingThemeBtn');if(lbtn)lbtn.textContent='☀️'},0)}}catch(e){}}());
 
 /* ═══════════════════════════════════════════════════════
    DOA UPLOAD & PARSING

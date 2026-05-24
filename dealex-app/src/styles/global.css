@@ -5,12 +5,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
 :root {
-  --gold:#3B49DF;
-  --gold-lt:#C7CBF8;
-  --gold-dk:#2837B8;
-  --gold-a08:rgba(59,73,223,.08);
-  --gold-a15:rgba(59,73,223,.15);
-  --gold-a25:rgba(59,73,223,.25);
+  /* ── Semantic accent tokens (indigo) ── */
+  --accent:#3B49DF;
+  --accent-lt:#C7CBF8;
+  --accent-dk:#2837B8;
+  --accent-a08:rgba(59,73,223,.08);
+  --accent-a15:rgba(59,73,223,.15);
+  --accent-a25:rgba(59,73,223,.25);
+  /* ── Backward-compat aliases (legacy code uses --gold) ── */
+  --gold:var(--accent);
+  --gold-lt:var(--accent-lt);
+  --gold-dk:var(--accent-dk);
+  --gold-a08:var(--accent-a08);
+  --gold-a15:var(--accent-a15);
+  --gold-a25:var(--accent-a25);
   --obs:#0F172A;
   --char:#1E293B;
   --panel:#1E293B;
@@ -86,8 +94,8 @@ body.light .fs option {
 
 /* Theme toggle button */
 .theme-toggle {
-  width:34px;
-  height:34px;
+  width:44px;
+  height:44px;
   border:1px solid var(--border);
   background:transparent;
   display:flex;
@@ -106,6 +114,11 @@ body.light .fs option {
   border-color:var(--gold);
   color:var(--gold);
 }
+
+/* Dual-icon theme swap — show moon in dark mode, sun in light mode */
+.theme-icon--sun  { display:none; }
+body.light .theme-icon--moon { display:none; }
+body.light .theme-icon--sun  { display:block; }
 
 *,*::before,*::after {
   box-sizing:border-box;
@@ -605,11 +618,12 @@ body {
   align-items:center;
   gap:2px;
   padding:6px 0;
+  min-height:44px;      /* WCAG 2.5.5 — 44 × 44px minimum touch target */
   background:none;
   border:none;
   color:var(--muted);
   font-family:'Inter',sans-serif;
-  font-size:7px;
+  font-size:11px;       /* raised from 7px — minimum legible label */
   letter-spacing:.06em;
   text-transform:uppercase;
   cursor:pointer;
@@ -624,6 +638,10 @@ body {
 .bni {
   font-size:18px;
   line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
 }
 
 .bn:hover {
@@ -633,9 +651,43 @@ body {
 .ticker {
   background:var(--panel2);
   border-bottom:1px solid var(--border);
-  padding:8px 16px;
+  padding:0;
   overflow:hidden;
   white-space:nowrap;
+  display:flex;
+  align-items:stretch;
+}
+
+/* Staleness label pinned to the left of the ticker */
+.ticker-badge {
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  padding:6px 10px;
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  white-space:nowrap;
+  gap:5px;
+}
+
+.ticker-badge .tb-dot {
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--muted);
+  flex-shrink:0;
+}
+
+/* Scrolling strip */
+.ticker-scroll {
+  flex:1;
+  overflow:hidden;
+  padding:6px 0;
 }
 
 .ticker-inner {
@@ -1506,7 +1558,8 @@ a:focus-visible,
     justify-content:flex-start;
     gap:10px;
     padding:12px 20px;
-    font-size:9px;
+    min-height:44px;    /* WCAG 2.5.5 — 44px min touch target on desktop too */
+    font-size:13px;     /* raised to meet 13px floor on desktop */
     text-align:left;
     border-left:2px solid transparent;
     white-space:nowrap;

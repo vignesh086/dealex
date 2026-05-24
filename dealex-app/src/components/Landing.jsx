@@ -79,18 +79,6 @@ body.zh .role-name,.zh .edu-panel,.zh .doc-req-label,.zh .doc-req-desc,.zh .lang
     </div>
   </div>
 
-  <!-- The 3 Rules — non-negotiable callout -->
-  <div style="padding:0 16px;margin-bottom:16px">
-    <div class="info-callout red">
-      <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:8px">⚠ DEALEX GROUND RULES — READ BEFORE YOU PROCEED</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.6">No Zoom calls. No WhatsApp negotiations. All communication flows through DEALEX — documented, logged, sequenced.</span></div>
-        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.6">No paperwork floating to anyone. Documents go where they need to go — and only to the party that needs to see them.</span></div>
-        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.6">No step is skipped. NCNDA → KYC → DOA → IMFPA → Term Sheet → Bank Package → SWIFT. That order. Every time.</span></div>
-      </div>
-    </div>
-  </div>
-
   <!-- Deal Structure -->
   <div style="padding:0 16px;margin-bottom:16px">
     <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px">▸ EVERY DEAL HAS A FIXED STRUCTURE</div>
@@ -299,6 +287,18 @@ body.zh .role-name,.zh .edu-panel,.zh .doc-req-label,.zh .doc-req-desc,.zh .lang
     </div>
   </div>
 
+  <!-- The 3 Rules — non-negotiable callout (shown after role selection so context is clear) -->
+  <div style="padding:0 16px;margin-bottom:16px">
+    <div class="info-callout red">
+      <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:8px">⚠ DEALEX GROUND RULES — READ BEFORE YOU PROCEED</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.6">No Zoom calls. No WhatsApp negotiations. All communication flows through DEALEX — documented, logged, sequenced.</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.6">No paperwork floating to anyone. Documents go where they need to go — and only to the party that needs to see them.</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.6">No step is skipped. NCNDA → KYC → DOA → IMFPA → Term Sheet → Bank Package → SWIFT. That order. Every time.</span></div>
+      </div>
+    </div>
+  </div>
+
   <!-- DEALEX Document Routing Rules -->
   <div style="padding:0 16px;margin-bottom:16px">
     <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px">▸ WHAT DEALEX FORWARDS — AND TO WHOM</div>
@@ -355,18 +355,6 @@ body.zh .role-name,.zh .edu-panel,.zh .doc-req-label,.zh .doc-req-desc,.zh .lang
       <div class="lpre" style="font-family:'Noto Sans SC',sans-serif">全球交易平台 — 无需视频会议，无需WhatsApp</div>
       <div style="font-family:'Noto Sans SC',sans-serif;font-size:clamp(28px,8vw,46px);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:8px">交易以<span style="color:var(--gold)">正确方式</span>完成。</div>
       <div style="font-family:'Noto Sans SC',sans-serif;font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:18px">真实程序。真实合规。真实保护。<br><strong style="color:var(--white)">我们掌控交易流程 — 让您的交易真正成交。</strong></div>
-    </div>
-  </div>
-
-  <!-- Rules ZH -->
-  <div style="padding:0 16px;margin-bottom:16px">
-    <div class="info-callout red">
-      <div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:var(--red);margin-bottom:8px;font-family:'Noto Sans SC',sans-serif">⚠ DEALEX 基本规则 — 请在继续前阅读</div>
-      <div style="display:flex;flex-direction:column;gap:6px;font-family:'Noto Sans SC',sans-serif">
-        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.7">禁止视频会议，禁止WhatsApp谈判。所有沟通通过DEALEX进行——有记录、有顺序。</span></div>
-        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.7">不随意传递文件。文件只发送给需要查看的当事方。</span></div>
-        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.7">不跳过任何步骤。NCNDA → KYC → DOA → IMFPA → 条款单 → 银行文件包 → SWIFT。顺序固定，每次如此。</span></div>
-      </div>
     </div>
   </div>
 
@@ -472,6 +460,18 @@ body.zh .role-name,.zh .edu-panel,.zh .doc-req-label,.zh .doc-req-desc,.zh .lang
         <div style="font-size:9px;color:var(--txt);line-height:1.8;font-family:'Noto Sans SC',sans-serif">DEALEX生成完全合规的SWIFT MT760（SBLC）和MT700（DLC）草稿，遵循2025年11月SWIFT第7类标准。您的职责是审查、认证和传输。</div>
       </div>
       <button class="bg" style="margin-top:12px;font-family:'Noto Sans SC',sans-serif" onclick="showAuth('create')">注册银行访问账户</button>
+    </div>
+  </div>
+
+  <!-- Rules ZH — shown after role selection so context is clear -->
+  <div style="padding:0 16px;margin-bottom:16px">
+    <div class="info-callout red">
+      <div style="font-size:9px;letter-spacing:.1em;font-weight:700;color:var(--red);margin-bottom:8px;font-family:'Noto Sans SC',sans-serif">⚠ DEALEX 基本规则 — 请在继续前阅读</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-family:'Noto Sans SC',sans-serif">
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.7">禁止视频会议，禁止WhatsApp谈判。所有沟通通过DEALEX进行——有记录、有顺序。</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.7">不随意传递文件。文件只发送给需要查看的当事方。</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start"><span style="color:var(--red);font-weight:700;flex-shrink:0">✗</span><span style="font-size:9px;color:var(--txt);line-height:1.7">不跳过任何步骤。NCNDA → KYC → DOA → IMFPA → 条款单 → 银行文件包 → SWIFT。顺序固定，每次如此。</span></div>
+      </div>
     </div>
   </div>
 

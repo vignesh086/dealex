@@ -1,45 +1,45 @@
+import Icon from './Icon.jsx'
+
+const NAV_ITEMS = [
+  { id: 'home',      label: 'Home',        icon: 'home',      page: 'home',      ariaLabel: 'Home' },
+  { id: 'fi',        label: 'Instruments', icon: 'bank',      page: 'fi',        ariaLabel: 'Financial Instruments' },
+  { id: 'templates', label: 'Templates',   icon: 'document',  page: 'templates', ariaLabel: 'Templates' },
+  { id: 'desk',      label: 'Desk',        icon: 'briefcase', page: 'desk',      ariaLabel: 'Deal Desk' },
+  { id: 'experts',   label: 'Experts',     icon: 'people',    page: 'experts',   ariaLabel: 'Experts' },
+]
+
 export default function Sidebar() {
   return (
-    <div dangerouslySetInnerHTML={{ __html: `
-      <div class="bnav" id="mainSidebar" role="tablist" aria-expanded="true">
+    <nav className="bnav" id="mainSidebar" role="tablist" aria-label="Main navigation" aria-expanded="true">
 
-        <!-- Collapse / expand toggle (desktop only) -->
+      {/* Collapse / expand toggle — desktop only */}
+      <button
+        className="nav-toggle-btn"
+        onClick={() => window.toggleSidebar?.()}
+        title="Toggle navigation"
+        aria-label="Toggle navigation panel"
+      >
+        <span id="sidebarToggleIcon" className="nav-toggle-icon" aria-hidden="true">‹</span>
+        <span id="sidebarToggleLabel" className="nav-toggle-label">Collapse</span>
+      </button>
+
+      {NAV_ITEMS.map(({ id, label, icon, page, ariaLabel }, index) => (
         <button
-          class="nav-toggle-btn"
-          onclick="toggleSidebar()"
-          title="Toggle navigation"
-          aria-label="Toggle navigation panel"
+          key={id}
+          className={`bn${index === 0 ? ' act' : ''}`}
+          id={`nav-${id}`}
+          role="tab"
+          aria-selected={index === 0}
+          aria-label={ariaLabel}
+          title={ariaLabel}
+          onClick={() => window.navTo?.(page)}
         >
-          <span id="sidebarToggleIcon" class="nav-toggle-icon" aria-hidden="true">‹</span>
-          <span id="sidebarToggleLabel" class="nav-toggle-label">Collapse</span>
+          <span className="bni" aria-hidden="true">
+            <Icon name={icon} size={20} />
+          </span>
+          <span className="bn-label">{label}</span>
         </button>
-
-        <button class="bn act" id="nav-home" role="tab" aria-selected="true" aria-label="Home" title="Home" onclick="navTo('home')">
-          <span class="bni" aria-hidden="true">🏠</span>
-          <span class="bn-label">Home</span>
-        </button>
-
-        <button class="bn" id="nav-fi" role="tab" aria-selected="false" aria-label="Financial Instruments" title="Financial Instruments" onclick="navTo('fi')">
-          <span class="bni" aria-hidden="true">🏦</span>
-          <span class="bn-label">Instruments</span>
-        </button>
-
-        <button class="bn" id="nav-templates" role="tab" aria-selected="false" aria-label="Templates" title="Templates" onclick="navTo('templates')">
-          <span class="bni" aria-hidden="true">📄</span>
-          <span class="bn-label">Templates</span>
-        </button>
-
-        <button class="bn" id="nav-desk" role="tab" aria-selected="false" aria-label="Deal Desk" title="Deal Desk" onclick="navTo('desk')">
-          <span class="bni" aria-hidden="true">💼</span>
-          <span class="bn-label">Desk</span>
-        </button>
-
-        <button class="bn" id="nav-experts" role="tab" aria-selected="false" aria-label="Experts" title="Experts" onclick="navTo('experts')">
-          <span class="bni" aria-hidden="true">👨‍💼</span>
-          <span class="bn-label">Experts</span>
-        </button>
-
-      </div>
-    ` }} />
+      ))}
+    </nav>
   )
 }
