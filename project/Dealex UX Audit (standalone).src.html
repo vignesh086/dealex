@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dealex — UX Audit &amp; Recommendations</title>
+<link rel="stylesheet" href="audit/audit.css"/>
+<link rel="stylesheet" href="audit/demos.css"/>
+</head>
+<body>
+
+<template id="__bundler_thumbnail" data-bg-color="#0B0F1A">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0B0F1A"/>
+    <g transform="translate(600 400)" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, monospace" font-weight="700" letter-spacing="20">
+      <text x="0" y="0" font-size="120" fill="#E6EBF5">DEAL<tspan fill="#5B6BFF">EX</tspan></text>
+      <text x="0" y="70" font-size="22" fill="#6B7592" letter-spacing="14">U X   A U D I T</text>
+    </g>
+    <line x1="500" y1="450" x2="700" y2="450" stroke="#5B6BFF" stroke-width="2"/>
+  </svg>
+</template>
+
+<!-- ────────────────────── NAV ────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">DEAL<span class="ex">EX</span> · AUDIT</div>
+    <div class="nav-links">
+      <a href="#summary">Summary</a>
+      <a href="#issues">Top 10</a>
+      <a href="#redesigns">Redesigns</a>
+      <a href="#code">Code fixes</a>
+      <a href="#quickwins">Quick wins</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ────────────────────── HERO ────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">UX / UI Audit · May 2026 · v1</div>
+    <h1>Dealex feels like the brief.<br/><em>It doesn't yet feel like the product.</em></h1>
+    <p class="lede">
+      The brand DNA is right — disciplined, institutional, sequenced. The execution is leaking signal: emoji icons, 8px type, a "no" wall before the value prop, and a sidebar that injects HTML strings. This audit covers the top ten issues with quick wins, three redesign directions, and code-level fixes you can paste in tomorrow.
+    </p>
+    <div class="hero-meta">
+      <span>Project<strong>dealex.vercel.app</strong></span>
+      <span>Stack<strong>React 19 · Vite · 280KB legacy.js</strong></span>
+      <span>Audience<strong>SMB issuers ↔ trade-finance pros</strong></span>
+      <span>Verdict<strong>Polish, then re-architect</strong></span>
+    </div>
+  </div>
+</header>
+
+<!-- ────────────────────── SUMMARY ────────────────────── -->
+<section id="summary">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="num">01 / TL;DR</div>
+        <h2>Where Dealex stands today</h2>
+      </div>
+      <div class="right">Scored across the four dimensions a trade-finance app gets judged on. Higher is better. Brand &amp; positioning are strong — execution, accessibility, and code health drag the average down.</div>
+    </div>
+
+    <div class="tldr">
+      <div>
+        <div class="label">Brand &amp; positioning</div>
+        <div class="val">B+</div>
+        <div class="desc">Distinct voice, real subject-matter depth. The "sequenced rail" pitch is clear and defensible.</div>
+        <div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+      <div>
+        <div class="label">Visual execution</div>
+        <div class="val">C–</div>
+        <div class="desc">Emoji icons, mis-named tokens, 7–10px type, CSS-drawn diagrams. Reads as prototype, not platform.</div>
+        <div class="score"><i class="bad"></i><i class="bad"></i><i class="bad"></i><i class="bad"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div>
+        <div class="label">Accessibility</div>
+        <div class="val">D</div>
+        <div class="desc">Type far below WCAG minimums, no focus rings, tap targets under 44px, gendered emoji in nav.</div>
+        <div class="score"><i class="bad"></i><i class="bad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div>
+        <div class="label">Code health</div>
+        <div class="val">C</div>
+        <div class="desc"><code>dangerouslySetInnerHTML</code> + <code>window.*</code> globals across most components. React in name only.</div>
+        <div class="score"><i class="bad"></i><i class="bad"></i><i class="bad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── ISSUES ────────────────────── -->
+<section id="issues">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="num">02 / Top 10 issues</div>
+        <h2>Ten things to fix, in priority order</h2>
+      </div>
+      <div class="right">Ranked by impact on user trust × effort to fix. Most are quick wins — none requires a redesign. Each card shows the current state on the left and a proposed fix on the right.</div>
+    </div>
+
+    <div id="issues-root"></div>
+  </div>
+</section>
+
+<!-- ────────────────────── REDESIGNS ────────────────────── -->
+<section id="redesigns">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="num">03 / Direction exploration</div>
+        <h2>Three landing directions, same brand DNA</h2>
+      </div>
+      <div class="right">You asked for options. Each direction keeps your "sequenced, audited rail" positioning, but pulls a different lever — calm, editorial, or product-first. Pick one (or remix), then we apply the same logic to every other screen.</div>
+    </div>
+
+    <div id="redesigns-root"></div>
+  </div>
+</section>
+
+<!-- ────────────────────── APP SHELL ────────────────────── -->
+<section id="shell">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="num">04 / App shell</div>
+        <h2>The post-login shell, cleaned up</h2>
+      </div>
+      <div class="right">SVG nav icons, real auth state, a ticker that admits when it's stale, and a topbar that tells the user where they are. Sidebar drops to 54px collapsed — most apps in this space sit at 60–72px.</div>
+    </div>
+
+    <div id="shell-root"></div>
+  </div>
+</section>
+
+<!-- ────────────────────── CODE FIXES ────────────────────── -->
+<section id="code">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="num">05 / Code patches</div>
+        <h2>Drop-in fixes for the most-flagged code smells</h2>
+      </div>
+      <div class="right">These aren't a refactor — they're cut/paste replacements for the three files that touch every screen. Once these land, the rest of the audit becomes ordinary CSS work.</div>
+    </div>
+
+    <div style="display:grid;gap:24px">
+
+      <!-- Patch A — Sidebar -->
+      <div style="border:1px solid var(--line);border-radius:14px;overflow:hidden">
+        <div style="padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--panel)">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px">Patch A</div>
+            <div style="font-size:18px;font-weight:600">Real <code style="font-family:'JetBrains Mono',monospace;font-size:15px;background:var(--bg-2);padding:2px 8px;border-radius:4px;color:var(--accent)">Sidebar.jsx</code></div>
+          </div>
+          <div style="font-size:12px;color:var(--ink-3);font-family:'JetBrains Mono',monospace">replaces dangerouslySetInnerHTML</div>
+        </div>
+<pre class="code">import { useEffect, useState } from 'react'
+import { Icon } from './Icon.jsx'
+
+const TABS = [
+  { id: 'home',      label: 'Home',        icon: 'home' },
+  { id: 'fi',        label: 'Instruments', icon: 'bank' },
+  { id: 'templates', label: 'Templates',   icon: 'doc'  },
+  { id: 'desk',      label: 'Desk',        icon: 'desk' },
+  { id: 'experts',   label: 'Experts',     icon: 'team' },
+]
+
+export default function Sidebar({ active, onNavigate, collapsed, onToggle }) {
+  return (
+    &lt;nav className={`sidebar ${collapsed ? 'is-collapsed' : ''}`} aria-label="Primary"&gt;
+      &lt;button className="sidebar-toggle" onClick={onToggle}
+              aria-label={collapsed ? 'Expand navigation' : 'Collapse navigation'}&gt;
+        &lt;Icon name={collapsed ? 'chevron-right' : 'chevron-left'} /&gt;
+      &lt;/button&gt;
+
+      &lt;ul role="tablist"&gt;
+        {TABS.map(t =&gt; (
+          &lt;li key={t.id}&gt;
+            &lt;button
+              role="tab"
+              aria-selected={active === t.id}
+              aria-controls={`panel-${t.id}`}
+              className={`nav-item ${active === t.id ? 'is-active' : ''}`}
+              onClick={() =&gt; onNavigate(t.id)}&gt;
+              &lt;Icon name={t.icon} /&gt;
+              &lt;span className="nav-label"&gt;{t.label}&lt;/span&gt;
+            &lt;/button&gt;
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  )
+}</pre>
+      </div>
+
+      <!-- Patch B — Tokens -->
+      <div style="border:1px solid var(--line);border-radius:14px;overflow:hidden">
+        <div style="padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--panel)">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px">Patch B</div>
+            <div style="font-size:18px;font-weight:600">Rename tokens · <code style="font-family:'JetBrains Mono',monospace;font-size:15px;background:var(--bg-2);padding:2px 8px;border-radius:4px;color:var(--accent)">global.css</code></div>
+          </div>
+          <div style="font-size:12px;color:var(--ink-3);font-family:'JetBrains Mono',monospace">find/replace, no logic change</div>
+        </div>
+<pre class="code">:root {
+  /* Brand */
+  --accent:       #5B6BFF;
+  --accent-50:    #EEF0FF;
+  --accent-100:   #C7CBF8;
+  --accent-500:   #5B6BFF;
+  --accent-700:   #2837B8;
+  --accent-soft:  rgba(91,107,255,.14);
+  --accent-line:  rgba(91,107,255,.35);
+
+  /* Surfaces (dark) */
+  --bg:        #0B0F1A;
+  --panel:     #141C30;
+  --panel-2:   #1A2440;
+  --line:      rgba(148,163,184,.12);
+  --line-2:    rgba(148,163,184,.20);
+
+  /* Text */
+  --ink:    #E6EBF5;
+  --ink-2:  #A8B1C6;
+  --ink-3:  #6B7592;
+
+  /* Status */
+  --good: #22C58A;
+  --warn: #F5A623;
+  --bad:  #FF5570;
+
+  /* Type scale — minimum 13px in product, 14px on landing */
+  --t-xs:  13px;
+  --t-sm:  14px;
+  --t-md:  16px;
+  --t-lg:  20px;
+  --t-xl:  28px;
+  --t-2xl: 40px;
+}
+
+/* Then: sed -i 's/--gold/--accent/g' src/**/*.{jsx,css} */</pre>
+      </div>
+
+      <!-- Patch C — Icon component -->
+      <div style="border:1px solid var(--line);border-radius:14px;overflow:hidden">
+        <div style="padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--panel)">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px">Patch C</div>
+            <div style="font-size:18px;font-weight:600">Single <code style="font-family:'JetBrains Mono',monospace;font-size:15px;background:var(--bg-2);padding:2px 8px;border-radius:4px;color:var(--accent)">Icon.jsx</code> for all glyphs</div>
+          </div>
+          <div style="font-size:12px;color:var(--ink-3);font-family:'JetBrains Mono',monospace">retires every emoji</div>
+        </div>
+<pre class="code">// Icon.jsx — 1.6 stroke, 24px viewBox, currentColor-aware
+const PATHS = {
+  home:  'M3 11l9-7 9 7v9a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2v-9z',
+  bank:  'M3 10l9-6 9 6v2H3v-2zM5 12v8M19 12v8M9 12v8M15 12v8M3 21h18',
+  doc:   'M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5zM14 3v5h5M9 13h6M9 17h6',
+  desk:  'M3 7h18v13H3zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18',
+  team:  'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z' +
+         'M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+  moon:  'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z',
+  sun:   'M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2' +
+         'M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42',
+  // …add the rest as you migrate
+}
+
+export function Icon({ name, size = 18, className = '', strokeWidth = 1.6 }) {
+  const d = PATHS[name]
+  if (!d) return null
+  return (
+    &lt;svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" strokeWidth={strokeWidth}
+         strokeLinecap="round" strokeLinejoin="round"
+         className={`icon ${className}`} aria-hidden="true"&gt;
+      &lt;path d={d} /&gt;
+    &lt;/svg&gt;
+  )
+}</pre>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── QUICK WINS ────────────────────── -->
+<section id="quickwins">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="num">06 / Day-one quick wins</div>
+        <h2>What to ship by end of week</h2>
+      </div>
+      <div class="right">If you do nothing else from this audit, do these. Each one is under an afternoon's work and lifts perceived quality more than its size would suggest.</div>
+    </div>
+
+    <div class="wins">
+      <div>
+        <div class="win-time">~ 30 min</div>
+        <div class="win-title">Retire emoji from nav, theme toggle &amp; role cards</div>
+        <div class="win-desc">Drop the <code>Icon.jsx</code> from Patch C. Swap <code>🏠 🏦 📄 💼 👨‍💼 🌙 🏛️ 📜 🤝</code> for the named SVG glyphs. Single biggest perceived-quality jump on the list.</div>
+      </div>
+      <div>
+        <div class="win-time">~ 20 min</div>
+        <div class="win-title">Rename <code>--gold</code> → <code>--accent</code></div>
+        <div class="win-desc">One <code>sed</code> across <code>src/</code>. Removes the cognitive mismatch every new dev (and you, six months from now) will hit on day one.</div>
+      </div>
+      <div>
+        <div class="win-time">~ 1 hour</div>
+        <div class="win-title">Bump every type size below 13px</div>
+        <div class="win-desc">Set <code>:root { font-size: 14px }</code> as the floor, then triage the 7–10px hardcoded values in <code>Landing.jsx</code>. Body becomes readable on a phone for the first time.</div>
+      </div>
+      <div>
+        <div class="win-time">~ 2 hours</div>
+        <div class="win-title">Lead the hero with a CTA + a benefit</div>
+        <div class="win-desc">Move the "Ground Rules" callout below the role selector. Replace with a primary "Start a deal" + secondary "How it works." Re-frame "no Zoom" as "audited, sequenced rail."</div>
+      </div>
+      <div>
+        <div class="win-time">~ 30 min</div>
+        <div class="win-title">Re-label the ticker as indicative</div>
+        <div class="win-desc">Either wire a 5-min cached feed, or add <code>· INDICATIVE · 12s ago</code> and pulse a dot. Static "live" prices are the single most product-eroding detail on the screen.</div>
+      </div>
+      <div>
+        <div class="win-time">~ 1 hour</div>
+        <div class="win-title">Add a <code>:focus-visible</code> ring + 44px min tap target</div>
+        <div class="win-desc">Two global rules in <code>global.css</code>. Unlocks keyboard nav and passes the basic mobile-a11y sweep. No design decisions required.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Audit prepared for the <a href="https://dealex.vercel.app/" target="_blank" rel="noopener">Dealex</a> codebase ·
+    Source explored on <code style="font-family:'JetBrains Mono',monospace;color:var(--ink-2)">claude/replicate-html-file-2V2Aa</code> ·
+    Top 10 fixes ship in &lt; 2 days.
+  </div>
+</footer>
+
+<!-- ────────────────────── REACT ────────────────────── -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="audit/demos.jsx"></script>
+<script type="text/babel" src="audit/redesigns.jsx"></script>
+<script type="text/babel" src="audit/data.jsx"></script>
+<script type="text/babel">
+// ──────────── Issue card ────────────
+function IssueCard({ issue }){
+  return (
+    <div className="issue">
+      <div className="issue-side">
+        <div className="issue-head">
+          <div className="issue-num">{String(issue.n).padStart(2,'0')}</div>
+          <div>
+            <div className="issue-title">{issue.title}</div>
+            <div className="issue-tags">
+              <span className={`tag sev-${issue.sev}`}>{issue.sev==='hi'?'High':issue.sev==='md'?'Medium':'Low'}</span>
+              {issue.tags.map((t,i)=>(
+                <span key={i} className={`tag ${t==='Quick win'?'win':''}`}>{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="issue-body">{issue.body}</div>
+      </div>
+      <div className="issue-side">
+        <div className="issue-demo" style={{marginBottom:14}}>
+          <div className="demo-label">As shipped</div>
+          <div className="demo-content">{issue.before}</div>
+        </div>
+        <div className="issue-demo">
+          <div className="demo-label after">Recommended</div>
+          <div className="demo-content">{issue.after}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ──────────── Redesigns row ────────────
+function Redesigns(){
+  return (
+    <div className="canvas-row">
+      <div className="mock-card">
+        <div className="mock-head">
+          <div className="mock-name">A. Calm institutional</div>
+          <div className="mock-tag">A · Default</div>
+        </div>
+        <div className="mock-frame"><LandingA/></div>
+        <div className="mock-notes">
+          <strong>Bet · Trust through restraint</strong>
+          Slate + indigo. Sentence-case headlines. Numbered sequence chips up front. Subtle SWIFT footnote. The "Bloomberg if it cared about typography" play.
+        </div>
+      </div>
+      <div className="mock-card">
+        <div className="mock-head">
+          <div className="mock-name">B. Editorial discipline</div>
+          <div className="mock-tag">B · Bold</div>
+        </div>
+        <div className="mock-frame"><LandingB/></div>
+        <div className="mock-notes">
+          <strong>Bet · Trust through authorship</strong>
+          Newsprint cream. Italic / roman type-pair. Numbered roman chapters. Reads as a body of practice, not a SaaS dash. High-end advisory vibe.
+        </div>
+      </div>
+      <div className="mock-card">
+        <div className="mock-head">
+          <div className="mock-name">C. Product-first</div>
+          <div className="mock-tag">C · Tactical</div>
+        </div>
+        <div className="mock-frame"><LandingC/></div>
+        <div className="mock-notes">
+          <strong>Bet · Trust through proof</strong>
+          Live deal counter, live deal list visible from the marketing page. Numbers up front: $284M routed · 1,240 deals · 18hr median. Converts skeptics.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ──────────── App-shell mock ────────────
+function Shell(){
+  return (
+    <div className="mock-card" style={{maxWidth:980, margin:'0 auto'}}>
+      <div className="mock-head">
+        <div className="mock-name">App shell · post-login</div>
+        <div className="mock-tag">SVG icons · scoped state · live ticker</div>
+      </div>
+      <div className="mock-frame" style={{aspectRatio:'16/9'}}><ShellRedesign/></div>
+      <div className="mock-notes">
+        <strong>Changes from current</strong>
+        Sidebar uses SVG glyphs + an active-rail accent · topbar shows breadcrumb + ⌘K search · ticker labels itself "Live · 12s ago" with a real dot pulse · home tab leads with a personalised greeting and four deal cards keyed by stage colour.
+      </div>
+    </div>
+  );
+}
+
+// ──────────── Mount ────────────
+function App(){
+  return (
+    <>
+      <div>{window.ISSUES.map(is => <IssueCard key={is.n} issue={is}/>)}</div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('issues-root')).render(<App/>);
+ReactDOM.createRoot(document.getElementById('redesigns-root')).render(<Redesigns/>);
+ReactDOM.createRoot(document.getElementById('shell-root')).render(<Shell/>);
+
+// Smooth scroll for anchor links
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(el){ e.preventDefault(); window.scrollTo({top: el.offsetTop - 56, behavior:'smooth'}); }
+  });
+});
+</script>
+
+</body>
+</html>
