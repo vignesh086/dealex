@@ -1186,9 +1186,10 @@ body {
 
 .tab-page {
   display:none;
-  /* On mobile the bottom nav is fixed; give content enough room to scroll past it.
-     calc() adds safe-area-inset-bottom for notched phones (iPhone etc.) */
-  padding-bottom:calc(var(--safe-b) + 96px);
+  /* On mobile the bottom nav is position:fixed at the bottom.
+     200px of padding guarantees any mobile nav bar + safe-area cannot
+     overlap the last content element regardless of device. */
+  padding-bottom:200px;
 }
 
 .tab-page.act {
@@ -1197,7 +1198,7 @@ body {
 
 .toast {
   position:fixed;
-  bottom:calc(var(--safe-b) + 96px);
+  bottom:calc(var(--safe-b) + 100px);
   left:50%;
   transform:translateX(-50%);
   background:var(--panel);
