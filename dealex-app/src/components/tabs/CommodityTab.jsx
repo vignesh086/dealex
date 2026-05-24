@@ -21,11 +21,11 @@ export default function CommodityTab() {
 
 <!-- Upload commodity docs -->
 <div class="card" style="margin-bottom:14px"><div class="ch"><span class="chl">Upload commodity documents</span><span class="pill po" id="cmdDocPill">0 files</span></div><div class="cb">
-<div style="font-size:9px;color:var(--muted2);margin-bottom:10px">Drop everything you have — lab reports, CCIC/SGS certificates, assay reports, photos, mining licences. DEALEX reads and extracts the data.</div>
+<div style="font-size:13px;color:var(--muted2);margin-bottom:10px">Drop everything you have — lab reports, CCIC/SGS certificates, assay reports, photos, mining licences. DEALEX reads and extracts the data.</div>
 <div style="border:1.5px dashed var(--border-mid);padding:18px;text-align:center;cursor:pointer;background:var(--panel);margin-bottom:10px" onclick="document.getElementById('cmdDocInput').click()" ondragover="event.preventDefault();this.style.borderColor='var(--gold)'" ondragleave="this.style.borderColor='var(--border-mid)'" ondrop="event.preventDefault();this.style.borderColor='';handleCmdDocs(event.dataTransfer.files)">
 <div style="font-size:20px;margin-bottom:4px">📁</div>
-<div style="font-size:10px;font-weight:600;color:var(--gold)">Drop commodity files here</div>
-<div style="font-size:8px;color:var(--muted2)">PDF, DOCX, images · Multiple files OK</div>
+<div style="font-size:13px;font-weight:600;color:var(--gold)">Drop commodity files here</div>
+<div style="font-size:13px;color:var(--muted2)">PDF, DOCX, images · Multiple files OK</div>
 </div>
 <input type="file" id="cmdDocInput" multiple accept=".pdf,.doc,.docx,.xlsx,.jpg,.jpeg,.png" style="display:none" onchange="handleCmdDocs(this.files)">
 <div id="cmdDocList"></div>
@@ -61,26 +61,26 @@ export default function CommodityTab() {
 
 <!-- Payment terms -->
 <div class="card" style="margin-bottom:14px"><div class="ch"><span class="chl">Payment terms</span><span class="pill" style="background:rgba(59,73,223,.12);color:var(--gold);border:1px solid rgba(59,73,223,.3)">Critical</span></div><div class="cb">
-<div style="font-size:9.5px;color:var(--txt);line-height:1.7;margin-bottom:12px">Select your preferred payment method. Listed from <strong style="color:var(--green)">most desirable</strong> to least. The buyer will see your preference.</div>
+<div style="font-size:13px;color:var(--txt);line-height:1.7;margin-bottom:12px">Select your preferred payment method. Listed from <strong style="color:var(--green)">most desirable</strong> to least. The buyer will see your preference.</div>
 
 <div style="display:flex;flex-direction:column;gap:6px">
-<div class="wiz-check on" onclick="this.classList.toggle('on')" data-pay="tt"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--green)">TT Wire Transfer (MT103)</strong><br><span style="font-size:9px;color:var(--muted2)">Fastest, simplest. Direct bank-to-bank wire. Requires trust or advance payment guarantee. Most desirable for seller.</span></div></div>
+<div class="wiz-check on" onclick="this.classList.toggle('on')" data-pay="tt"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--green)">TT Wire Transfer (MT103)</strong><br><span style="font-size:13px;color:var(--muted2)">Fastest, simplest. Direct bank-to-bank wire. Requires trust or advance payment guarantee. Most desirable for seller.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_sight"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">Irrevocable DLC at Sight (MT700)</strong><br><span style="font-size:9px;color:var(--muted2)">Bank-guaranteed. Paid immediately on compliant document presentation. Gold standard for commodity trade.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_sight"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">Irrevocable DLC at Sight (MT700)</strong><br><span style="font-size:13px;color:var(--muted2)">Bank-guaranteed. Paid immediately on compliant document presentation. Gold standard for commodity trade.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_deferred"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">DLC with deferred payment (30/60/90 days)</strong><br><span style="font-size:9px;color:var(--muted2)">Bank-guaranteed but payment delayed. Buyer gets time to receive and verify goods before paying.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="dlc_deferred"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">DLC with deferred payment (30/60/90 days)</strong><br><span style="font-size:13px;color:var(--muted2)">Bank-guaranteed but payment delayed. Buyer gets time to receive and verify goods before paying.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="sblc_wire"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">SBLC-backed wire transfer</strong><br><span style="font-size:9px;color:var(--muted2)">SBLC issued as guarantee, payment by wire. If buyer defaults, seller draws on SBLC.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="sblc_wire"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">SBLC-backed wire transfer</strong><br><span style="font-size:13px;color:var(--muted2)">SBLC issued as guarantee, payment by wire. If buyer defaults, seller draws on SBLC.</span></div></div>
 
-<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="collection"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">Documentary Collection (D/P or D/A)</strong><br><span style="font-size:9px;color:var(--muted2)">Documents through banks, but no bank payment guarantee. Lower cost, higher risk.</span></div></div>
+<div class="wiz-check" onclick="this.classList.toggle('on')" data-pay="collection"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><div><strong style="color:var(--white)">Documentary Collection (D/P or D/A)</strong><br><span style="font-size:13px;color:var(--muted2)">Documents through banks, but no bank payment guarantee. Lower cost, higher risk.</span></div></div>
 </div>
 </div></div>
 
 <!-- Seller checklist -->
 <div class="card" style="margin-bottom:14px"><div class="ch"><span class="chl">Seller's deal checklist</span><span class="pill pr" id="cmdCheckPill">Incomplete</span></div><div class="cb">
-<div style="font-size:9px;color:var(--muted2);margin-bottom:10px">Everything the buyer and their bank need to see. Complete this to generate your deal package.</div>
+<div style="font-size:13px;color:var(--muted2);margin-bottom:10px">Everything the buyer and their bank need to see. Complete this to generate your deal package.</div>
 
-<div style="font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#E06050;font-weight:600;margin-bottom:6px">Must have — deal cannot proceed</div>
+<div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#E06050;font-weight:600;margin-bottom:6px">Must have — deal cannot proceed</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Commodity inspection certificate</strong> (CCIC, SGS, or equivalent)</span></div>
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Lab analysis / assay report</strong> with grade confirmation</span></div>
@@ -90,7 +90,7 @@ export default function CommodityTab() {
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span><strong>Seller bank details</strong> — receiving bank, SWIFT, account number</span></div>
 </div>
 
-<div style="font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px">Should have — strengthens position</div>
+<div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px">Should have — strengthens position</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Stockpile photos or video</span></div>
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Certificate of Origin (COO)</span></div>
@@ -99,7 +99,7 @@ export default function CommodityTab() {
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Previous trade references or completed shipments</span></div>
 </div>
 
-<div style="font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px">Ready at shipping</div>
+<div style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px">Ready at shipping</div>
 <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px">
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Bill of Lading (B/L)</span></div>
 <div class="wiz-check" onclick="this.classList.toggle('on');updateCmdCheck()"><div class="wc-box" role="checkbox" aria-checked="false">✓</div><span>Commercial invoice</span></div>
@@ -119,7 +119,7 @@ export default function CommodityTab() {
 
 <!-- Buyer flow placeholder -->
 <div id="cmdBuyerFlow" style="display:none;padding:0 16px">
-<div class="card"><div class="cb" style="text-align:center;padding:20px"><div style="font-size:9px;color:var(--muted2)">Buyer flow — enter your requirements and DEALEX matches you with verified sellers.</div></div></div>
+<div class="card"><div class="cb" style="text-align:center;padding:20px"><div style="font-size:13px;color:var(--muted2)">Buyer flow — enter your requirements and DEALEX matches you with verified sellers.</div></div></div>
 </div>
 
 </div>
